@@ -1,0 +1,45 @@
+name: Deploy Chambaya
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar dependencias del backend
+        run: npm ci
+        working-directory: ./backend
+
+      - name: Instalar dependencias del frontend
+        run: npm ci
+        working-directory: ./frontend
+
+      - name: Construir frontend
+        run: npm run build
+        working-directory: ./frontend
+
+      - name: Desplegar a servidor
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST: ${{ secrets.HOST }}
+          USER: ${{ secrets.USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          rsync -avz --delete \
+            --exclude 'node_modules' \
+            --exclude '.git' \
+            --exclude '*.db' \
+            ./ ${{ secrets.USER }}@${{ secrets.HOST }}:/var/www/chambaya/
+          ssh ${{ secrets.USER }}@${{ secrets.HOST }} "cd /var/www/chambaya/backend && npm ci && npm run seed && pm2 restart chambaya"
