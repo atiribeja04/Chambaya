@@ -1,0 +1,32 @@
+{
+  "name": "chambaya-api",
+  "version": "1.0.0",
+  "description": "API REST de Chambaya - Plataforma de trabajos temporales",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node seed.js",
+    "docs": "npx jsdoc -c docs/jsdoc.conf.json"
+  },
+  "keywords": [
+    "chambaya",
+    "trabajos",
+    "temporales",
+    "freelance"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "@jsdoc/salty": "^0.2.12",
+    "docdash": "^2.0.2",
+    "jsdoc": "^4.0.3"
+  }
+}
