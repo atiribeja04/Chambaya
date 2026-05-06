@@ -1,0 +1,766 @@
+/**
+ * @file Rutas de ofertas de trabajo para Chambaya.
+ *
+ * Gestiona el CRUD completo de ofertas laborales: creacion, busqueda
+ * con filtros, detalle, actualizacion y eliminacion. Tambien maneja
+ * las solicitudes de postulacion de los demandantes.
+ *
+ * @module routes/jobs
+ * @requires express
+ * @requires ../db
+ * @requires ../middleware/auth
+ */
+
+const express = require('express');
+const { db } = require('../db');
+const { verificarToken } = require('../middleware/auth');
+const { crearNotificacion } = require('./notifications');
+const { upload } = require('../upload');
+
+const router = express.Router();
+
+/**
+ * GET /api/ofertas
+ *
+ * Obtiene todas las ofertas activas con busqueda y filtros.
+ *
+ * Soporta busqueda por texto (titulo y descripcion), filtro por
+ * categoria y filtro por ubicacion. Los resultados incluyen la
+ * puntuacion media del usuario ofertante y el numero total de
+ * valoraciones que ha recibido.
+ *
+ * @name searchOffers
+ * @memberof module:routes/jobs
+ * @function
+ * @param {string} [req.query.busqueda]   - Termino de busqueda en titulo o descripcion
+ * @param {string} [req.query.categoria]  - ID de categoria para filtrar
+ * @param {string} [req.query.ubicacion]  - Ubicacion para filtrar
+ *
+ * @returns {Object} 200
+ * @returns {Array} 200.ofertas - Lista de ofertas activas con datos del ofertante y categoria
+ *
+ * @example
+ * fetch('/api/ofertas?busqueda=limpieza&ubicacion=Madrid')
+ */
+router.get('/', (req, res) => {
+  try {
+    const { busqueda, categoria, ubicacion, barrio, page = 1, limit = 12 } = req.query;
+    const pagina = Math.max(1, parseInt(page) || 1);
+    const limite = Math.min(50, Math.max(1, parseInt(limit) || 12));
+
+    let whereSql = "WHERE o.estado = 'activa'";
+    const params = [];
+
+    if (busqueda) {
+      whereSql += ' AND (o.titulo LIKE ? OR o.descripcion LIKE ?)';
+      params.push(`%${busqueda}%`, `%${busqueda}%`);
+    }
+    if (categoria) {
+      whereSql += ' AND o.categoria_id = ?';
+      params.push(categoria);
+    }
+    if (ubicacion) {
+      whereSql += ' AND (o.ubicacion LIKE ? OR u.ubicacion LIKE ?)';
+      params.push(`%${ubicacion}%`, `%${ubicacion}%`);
+    }
+    if (barrio) {
+      whereSql += ' AND o.barrio = ?';
+      params.push(barrio);
+    }
+
+    const total = db.prepare(`
+      SELECT COUNT(*) as total FROM (SELECT o.id FROM ofertas o
+      JOIN usuarios u ON o.usuario_id = u.id
+      LEFT JOIN categorias c ON o.categoria_id = c.id
+      ${whereSql} GROUP BY o.id)
+    `).get(...params).total;
+
+    const totalPages = Math.ceil(total / limite);
+
+    const ofertas = db.prepare(`
+      SELECT o.*, u.nombre as usuario_nombre, u.ubicacion as usuario_ubicacion, u.foto_perfil as usuario_foto,
+             c.nombre as categoria_nombre, c.icono as categoria_icono,
+             COALESCE(AVG(v.puntuacion), 0) as puntuacion_media,
+             COUNT(v.id) as total_valoraciones,
+             (SELECT fecha_fin FROM destacados WHERE tipo = 'oferta' AND ref_id = o.id AND fecha_fin > datetime('now') LIMIT 1) as destacado_hasta
+      FROM ofertas o
+      JOIN usuarios u ON o.usuario_id = u.id
+      LEFT JOIN categorias c ON o.categoria_id = c.id
+      LEFT JOIN valoraciones v ON v.usuario_destino_id = o.usuario_id
+      ${whereSql}
+      GROUP BY o.id
+      ORDER BY destacado_hasta IS NOT NULL DESC, o.creado_en DESC
+      LIMIT ? OFFSET ?
+    `).all(...params, limite, (pagina - 1) * limite);
+
+    for (const o of ofertas) delete o.direccion
+
+    res.json({ ofertas, total, totalPages, page: pagina, limit: limite });
+  } catch (error) {
+    console.error('Error al obtener ofertas:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * GET /api/ofertas/categorias
+ *
+ * Obtiene la lista completa de categorias disponibles para clasificar
+ * las ofertas de trabajo.
+ *
+ * @name listCategories
+ * @memberof module:routes/jobs
+ * @function
+ *
+ * @returns {Object} 200
+ * @returns {Array} 200.categorias - Lista de categorias ordenadas alfabeticamente
+ *
+ * @example
+ * fetch('/api/ofertas/categorias')
+ */
+router.get('/categorias', (req, res) => {
+  try {
+    const categorias = db.prepare('SELECT * FROM categorias ORDER BY nombre').all();
+    res.json({ categorias });
+  } catch (error) {
+    console.error('Error al obtener categorias:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * GET /api/ofertas/mis-ofertas
+ *
+ * Obtiene las ofertas creadas por el usuario autenticado, incluyendo
+ * las solicitudes recibidas para cada una con datos de contacto del
+ * solicitante.
+ *
+ * @name myOffers
+ * @memberof module:routes/jobs
+ * @function
+ *
+ * @returns {Object} 200
+ * @returns {Array} 200.ofertas - Ofertas del usuario autenticado, cada una con su array `solicitudes`
+ *
+ * @throws {401} Si no hay token
+ *
+ * @example
+ * fetch('/api/ofertas/mis-ofertas', {
+ *   headers: { 'Authorization': `Bearer ${token}` }
+ * })
+ */
+router.get('/mis-ofertas', verificarToken, (req, res) => {
+  try {
+    const ofertas = db.prepare(`
+      SELECT o.*, c.nombre as categoria_nombre
+      FROM ofertas o
+      LEFT JOIN categorias c ON o.categoria_id = c.id
+      WHERE o.usuario_id = ?
+      ORDER BY o.creado_en DESC
+    `).all(req.usuario.id);
+
+    const ofertasConSolicitudes = ofertas.map(o => {
+      const solicitudes = db.prepare(`
+        SELECT s.*, u.nombre, u.email, u.telefono, u.ubicacion
+        FROM solicitudes s
+        JOIN usuarios u ON s.usuario_id = u.id
+        WHERE s.oferta_id = ?
+        ORDER BY s.creado_en DESC
+      `).all(o.id);
+      return { ...o, solicitudes };
+    });
+
+    res.json({ ofertas: ofertasConSolicitudes });
+  } catch (error) {
+    console.error('Error al obtener mis ofertas:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * GET /api/ofertas/mis-favoritos
+ *
+ * Obtiene las ofertas favoritas del usuario autenticado.
+ *
+ * @name myFavorites
+ * @memberof module:routes/jobs
+ * @function
+ * @returns {Object} 200
+ * @returns {Array} 200.ofertas - Lista de ofertas favoritas con datos completos
+ *
+ * @throws {401} Si no hay token valido
+ * @throws {500} Si ocurre un error interno
+ *
+ * @example
+ * fetch('/api/ofertas/mis-favoritos', {
+ *   headers: { 'Authorization': `Bearer ${token}` }
+ * })
+ */
+router.get('/mis-favoritos', verificarToken, (req, res) => {
+  try {
+    const ofertas = db.prepare(`
+      SELECT o.*, u.nombre as usuario_nombre, c.nombre as categoria_nombre,
+             COALESCE(AVG(v.puntuacion), 0) as puntuacion_media,
+             COUNT(v.id) as total_valoraciones
+      FROM favoritos f
+      JOIN ofertas o ON f.oferta_id = o.id
+      JOIN usuarios u ON o.usuario_id = u.id
+      LEFT JOIN categorias c ON o.categoria_id = c.id
+      LEFT JOIN valoraciones v ON v.usuario_destino_id = o.usuario_id
+      WHERE f.usuario_id = ?
+      GROUP BY o.id
+      ORDER BY f.creado_en DESC
+    `).all(req.usuario.id);
+    res.json({ ofertas });
+  } catch (error) {
+    console.error('Error al obtener favoritos:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * GET /api/ofertas/:id
+ *
+ * Obtiene los datos completos de una oferta especifica, incluyendo
+ * la informacion del ofertante, la puntuacion media y las valoraciones
+ * recibidas.
+ *
+ * @name getOffer
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number} req.params.id - ID de la oferta
+ *
+ * @returns {Object} 200
+ * @returns {Object} 200.oferta - Datos completos de la oferta con info del ofertante
+ * @returns {Array}  200.valoraciones - Valoraciones recibidas por el ofertante
+ *
+ * @throws {404} Si la oferta no existe
+ *
+ * @example
+ * fetch('/api/ofertas/3')
+ */
+router.get('/:id', (req, res) => {
+  try {
+    const oferta = db.prepare(`
+      SELECT o.*, u.nombre as usuario_nombre, u.email as usuario_email,
+             u.telefono as usuario_telefono, u.ubicacion as usuario_ubicacion,
+             u.descripcion as usuario_descripcion, u.foto_perfil as usuario_foto,
+             u.creado_en as usuario_registrado,
+             c.nombre as categoria_nombre, c.icono as categoria_icono,
+             COALESCE(AVG(v.puntuacion), 0) as puntuacion_media,
+             COUNT(v.id) as total_valoraciones,
+             (SELECT fecha_fin FROM destacados WHERE tipo = 'oferta' AND ref_id = o.id AND fecha_fin > datetime('now') LIMIT 1) as destacado_hasta
+      FROM ofertas o
+      JOIN usuarios u ON o.usuario_id = u.id
+      LEFT JOIN categorias c ON o.categoria_id = c.id
+      LEFT JOIN valoraciones v ON v.usuario_destino_id = o.usuario_id
+      WHERE o.id = ?
+      GROUP BY o.id
+    `).get(req.params.id);
+
+    if (!oferta) {
+      return res.status(404).json({ error: 'Oferta no encontrada.' });
+    }
+
+    const valoraciones = db.prepare(`
+      SELECT v.*, u.nombre as usuario_nombre
+      FROM valoraciones v
+      JOIN usuarios u ON v.usuario_origen_id = u.id
+      WHERE v.usuario_destino_id = ?
+      ORDER BY v.creado_en DESC
+    `).all(oferta.usuario_id);
+
+    delete oferta.direccion
+
+    res.json({ oferta, valoraciones });
+  } catch (error) {
+    console.error('Error al obtener oferta:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * POST /api/ofertas
+ *
+ * Crea una nueva oferta de trabajo.
+ *
+ * Solo los usuarios con tipo `'ofertante'` pueden publicar ofertas.
+ * Los campos obligatorios son `titulo` y `descripcion`.
+ *
+ * @name createOffer
+ * @memberof module:routes/jobs
+ * @function
+ * @param {string}  req.body.titulo       - Titulo de la oferta
+ * @param {string}  req.body.descripcion  - Descripcion detallada del trabajo
+ * @param {string}  [req.body.ubicacion]  - Ubicacion donde se realiza el trabajo
+ * @param {number}  [req.body.precio]     - Precio ofrecido
+ * @param {string}  [req.body.tipo_precio] - Tipo: `'por_hora'` | `'por_dia'` | `'fijo'` (default: 'fijo')
+ * @param {number}  [req.body.categoria_id] - ID de la categoria
+ *
+ * @returns {Object} 201 - Oferta creada
+ * @returns {string} 201.mensaje - Confirmacion
+ * @returns {Object} 201.oferta  - Datos de la oferta recien creada
+ *
+ * @throws {400} Si faltan titulo o descripcion
+ * @throws {403} Si el usuario no es ofertante
+ *
+ * @example
+ * fetch('/api/ofertas', {
+ *   method: 'POST',
+ *   headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+ *   body: JSON.stringify({
+ *     titulo: 'Limpieza de piso 80m2',
+ *     descripcion: 'Necesito alguien para limpiar un piso en el centro...',
+ *     ubicacion: 'Madrid',
+ *     precio: 45,
+ *     tipo_precio: 'fijo',
+ *     categoria_id: 1
+ *   })
+ * })
+ */
+router.post('/', verificarToken, upload.single('imagen'), (req, res) => {
+  try {
+    const { titulo, descripcion, ubicacion, precio, tipo_precio, categoria_id, barrio, latitud, longitud, direccion } = req.body;
+    const imagen = req.file ? '/uploads/' + req.file.filename : null;
+
+    if (!titulo || !descripcion) {
+      return res.status(400).json({ error: 'Titulo y descripcion son requeridos.' });
+    }
+
+    if (req.usuario.tipo !== 'ofertante') {
+      return res.status(403).json({ error: 'Solo los ofertantes pueden crear ofertas.' });
+    }
+
+    const resultado = db.prepare(`
+      INSERT INTO ofertas (titulo, descripcion, ubicacion, precio, tipo_precio, categoria_id, usuario_id, imagen, barrio, latitud, longitud, direccion)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(titulo, descripcion, ubicacion || null, precio || null, tipo_precio || 'fijo', categoria_id || null, req.usuario.id, imagen, barrio || null, latitud || null, longitud || null, direccion || null);
+
+    const oferta = db.prepare('SELECT * FROM ofertas WHERE id = ?').get(resultado.lastInsertRowid);
+
+    res.status(201).json({ mensaje: 'Oferta creada correctamente.', oferta });
+  } catch (error) {
+    console.error('Error al crear oferta:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * PUT /api/ofertas/:id
+ *
+ * Actualiza una oferta existente.
+ *
+ * Solo el creador de la oferta puede modificarla. Los campos
+ * proporcionados se actualizan; los omitidos mantienen su valor.
+ *
+ * @name updateOffer
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number}  req.params.id - ID de la oferta a actualizar
+ * @param {string}  [req.body.titulo]       - Nuevo titulo
+ * @param {string}  [req.body.descripcion]  - Nueva descripcion
+ * @param {string}  [req.body.ubicacion]    - Nueva ubicacion (null para limpiar)
+ * @param {number}  [req.body.precio]       - Nuevo precio
+ * @param {string}  [req.body.tipo_precio]  - Nuevo tipo de precio
+ * @param {number}  [req.body.categoria_id] - Nueva categoria (null para limpiar)
+ * @param {string}  [req.body.estado]       - Nuevo estado: `'activa'` | `'completada'` | `'cancelada'`
+ *
+ * @returns {Object} 200 - Oferta actualizada
+ * @returns {string} 200.mensaje - Confirmacion
+ *
+ * @throws {404} Si la oferta no existe
+ * @throws {403} Si el usuario no es el creador
+ *
+ * @example
+ * fetch('/api/ofertas/3', {
+ *   method: 'PUT',
+ *   headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+ *   body: JSON.stringify({ estado: 'completada' })
+ * })
+ */
+router.put('/:id', verificarToken, upload.single('imagen'), (req, res) => {
+  try {
+    const oferta = db.prepare('SELECT * FROM ofertas WHERE id = ?').get(req.params.id);
+
+    if (!oferta) {
+      return res.status(404).json({ error: 'Oferta no encontrada.' });
+    }
+    if (oferta.usuario_id !== req.usuario.id) {
+      return res.status(403).json({ error: 'No tienes permiso para modificar esta oferta.' });
+    }
+
+    const { titulo, descripcion, ubicacion, precio, tipo_precio, categoria_id, estado, barrio, latitud, longitud, direccion } = req.body;
+    const imagen = req.file ? '/uploads/' + req.file.filename : undefined;
+
+    db.prepare(`
+      UPDATE ofertas SET
+        titulo = COALESCE(?, titulo),
+        descripcion = COALESCE(?, descripcion),
+        ubicacion = ?,
+        precio = COALESCE(?, precio),
+        tipo_precio = COALESCE(?, tipo_precio),
+        categoria_id = ?,
+        imagen = COALESCE(?, imagen),
+        estado = COALESCE(?, estado),
+        barrio = ?,
+        latitud = COALESCE(?, latitud),
+        longitud = COALESCE(?, longitud),
+        direccion = ?,
+        actualizado_en = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(
+      titulo || null, descripcion || null, ubicacion !== undefined ? ubicacion : null,
+      precio !== undefined ? precio : null, tipo_precio || null,
+      categoria_id !== undefined ? categoria_id : null,
+      imagen !== undefined ? imagen : null,
+      estado || null,
+      barrio ?? null, latitud ?? null, longitud ?? null, direccion ?? null,
+      req.params.id
+    );
+
+    if (estado === 'completada') {
+      const solicitantes = db.prepare(
+        "SELECT s.usuario_id FROM solicitudes s WHERE s.oferta_id = ? AND s.estado = 'aceptada'"
+      ).all(req.params.id);
+      for (const s of solicitantes) {
+        crearNotificacion(s.usuario_id, 'trabajo_completado',
+          `El trabajo "${oferta.titulo}" ha sido marcado como completado`, oferta.id);
+      }
+    }
+
+    res.json({ mensaje: 'Oferta actualizada correctamente.' });
+  } catch (error) {
+    console.error('Error al actualizar oferta:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * GET /api/ofertas/:id/solicitudes
+ *
+ * Obtiene las solicitudes de postulacion recibidas para una oferta.
+ *
+ * Solo el creador de la oferta o un administrador pueden ver las
+ * solicitudes. Incluye datos de contacto del solicitante (nombre,
+ * email, telefono, ubicacion).
+ *
+ * @name getApplications
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number} req.params.id - ID de la oferta
+ *
+ * @returns {Object} 200
+ * @returns {Array} 200.solicitudes - Solicitudes con datos del solicitante
+ *
+ * @throws {404} Si la oferta no existe
+ * @throws {403} Si el usuario no es el creador ni admin
+ *
+ * @example
+ * fetch('/api/ofertas/3/solicitudes', {
+ *   headers: { 'Authorization': `Bearer ${token}` }
+ * })
+ */
+router.get('/:id/solicitudes', verificarToken, (req, res) => {
+  try {
+    const oferta = db.prepare('SELECT * FROM ofertas WHERE id = ?').get(req.params.id);
+    if (!oferta) return res.status(404).json({ error: 'Oferta no encontrada.' });
+    if (oferta.usuario_id !== req.usuario.id && req.usuario.tipo !== 'admin') {
+      return res.status(403).json({ error: 'Acceso denegado.' });
+    }
+
+    const solicitudes = db.prepare(`
+      SELECT s.*, u.nombre, u.email, u.telefono, u.ubicacion
+      FROM solicitudes s
+      JOIN usuarios u ON s.usuario_id = u.id
+      WHERE s.oferta_id = ?
+      ORDER BY s.creado_en DESC
+    `).all(req.params.id);
+
+    res.json({ solicitudes });
+  } catch (error) {
+    console.error('Error al obtener solicitudes:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * POST /api/ofertas/:id/solicitar
+ *
+ * Envia una solicitud para postularse a una oferta de trabajo.
+ *
+ * El usuario autenticado se postula a la oferta especificada.
+ * No puede postularse a sus propias ofertas ni a ofertas que ya
+ * haya solicitado anteriormente.
+ *
+ * @name applyToOffer
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number}  req.params.id - ID de la oferta
+ * @param {string}  [req.body.mensaje] - Mensaje opcional para el ofertante
+ *
+ * @returns {Object} 201 - Solicitud enviada
+ * @returns {string} 201.mensaje - Confirmacion
+ *
+ * @throws {404} Si la oferta no existe
+ * @throws {400} Si la oferta no esta activa
+ * @throws {400} Si el usuario es el creador de la oferta
+ * @throws {409} Si el usuario ya ha solicitado esta oferta
+ *
+ * @example
+ * fetch('/api/ofertas/3/solicitar', {
+ *   method: 'POST',
+ *   headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+ *   body: JSON.stringify({ mensaje: 'Hola! Me interesa el trabajo. Tengo experiencia.' })
+ * })
+ */
+router.post('/:id/solicitar', verificarToken, (req, res) => {
+  try {
+    const oferta = db.prepare('SELECT * FROM ofertas WHERE id = ?').get(req.params.id);
+
+    if (!oferta) {
+      return res.status(404).json({ error: 'Oferta no encontrada.' });
+    }
+    if (oferta.estado !== 'activa') {
+      return res.status(400).json({ error: 'Esta oferta ya no esta activa.' });
+    }
+    if (oferta.usuario_id === req.usuario.id) {
+      return res.status(400).json({ error: 'No puedes solicitarte a ti mismo.' });
+    }
+
+    const existente = db.prepare(
+      'SELECT id FROM solicitudes WHERE oferta_id = ? AND usuario_id = ?'
+    ).get(req.params.id, req.usuario.id);
+
+    if (existente) {
+      return res.status(409).json({ error: 'Ya has solicitado esta oferta.' });
+    }
+
+    db.prepare(
+      'INSERT INTO solicitudes (oferta_id, usuario_id, mensaje) VALUES (?, ?, ?)'
+    ).run(req.params.id, req.usuario.id, req.body.mensaje || null);
+
+    crearNotificacion(oferta.usuario_id, 'nueva_solicitud',
+      `${req.usuario.nombre} se ha postulado a tu oferta "${oferta.titulo}"`, oferta.id);
+
+    res.status(201).json({ mensaje: 'Solicitud enviada correctamente. El ofertante se pondra en contacto contigo.' });
+  } catch (error) {
+    console.error('Error al solicitar oferta:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * PUT /api/ofertas/:id/solicitudes/:solicitudId
+ *
+ * Acepta o rechaza una solicitud de postulacion.
+ *
+ * Solo el creador de la oferta puede gestionar las solicitudes.
+ * El estado puede ser `'aceptada'` o `'rechazada'`.
+ *
+ * @name respondToApplication
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number} req.params.id          - ID de la oferta
+ * @param {number} req.params.solicitudId - ID de la solicitud
+ * @param {string} req.body.estado        - `'aceptada'` | `'rechazada'`
+ *
+ * @returns {Object} 200 - Solicitud actualizada
+ * @returns {string} 200.mensaje - Confirmacion
+ *
+ * @throws {404} Si la oferta no existe
+ * @throws {403} Si el usuario no es el creador
+ * @throws {400} Si el estado es invalido
+ *
+ * @example
+ * fetch('/api/ofertas/3/solicitudes/5', {
+ *   method: 'PUT',
+ *   headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+ *   body: JSON.stringify({ estado: 'aceptada' })
+ * })
+ */
+router.put('/:id/solicitudes/:solicitudId', verificarToken, (req, res) => {
+  try {
+    const oferta = db.prepare('SELECT * FROM ofertas WHERE id = ?').get(req.params.id);
+    if (!oferta) return res.status(404).json({ error: 'Oferta no encontrada.' });
+    if (oferta.usuario_id !== req.usuario.id) {
+      return res.status(403).json({ error: 'Acceso denegado.' });
+    }
+
+    const { estado } = req.body;
+    if (!['aceptada', 'rechazada'].includes(estado)) {
+      return res.status(400).json({ error: 'Estado invalido.' });
+    }
+
+    const solicitud = db.prepare('SELECT * FROM solicitudes WHERE id = ?').get(req.params.solicitudId);
+
+    db.prepare('UPDATE solicitudes SET estado = ? WHERE id = ?')
+      .run(estado, req.params.solicitudId);
+
+    const textoEstado = estado === 'aceptada' ? 'aceptada' : 'rechazada';
+    crearNotificacion(solicitud.usuario_id, `solicitud_${textoEstado}`,
+      `${req.usuario.nombre} ha ${textoEstado} tu solicitud para "${oferta.titulo}"`, oferta.id);
+
+    res.json({ mensaje: `Solicitud ${estado} correctamente.` });
+  } catch (error) {
+    console.error('Error al actualizar solicitud:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * DELETE /api/ofertas/:id
+ *
+ * Elimina una oferta del sistema.
+ *
+ * Solo el creador de la oferta o un administrador puede eliminarla.
+ * La operacion es permanente (no hay papelera de reciclaje).
+ *
+ * @name deleteOffer
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number} req.params.id - ID de la oferta a eliminar
+ *
+ * @returns {Object} 200 - Oferta eliminada
+ * @returns {string} 200.mensaje - Confirmacion
+ *
+ * @throws {404} Si la oferta no existe
+ * @throws {403} Si el usuario no es el creador ni admin
+ *
+ * @example
+ * fetch('/api/ofertas/3', {
+ *   method: 'DELETE',
+ *   headers: { 'Authorization': `Bearer ${token}` }
+ * })
+ */
+router.delete('/:id', verificarToken, (req, res) => {
+  try {
+    const oferta = db.prepare('SELECT * FROM ofertas WHERE id = ?').get(req.params.id);
+
+    if (!oferta) {
+      return res.status(404).json({ error: 'Oferta no encontrada.' });
+    }
+    if (oferta.usuario_id !== req.usuario.id && req.usuario.tipo !== 'admin') {
+      return res.status(403).json({ error: 'No tienes permiso para eliminar esta oferta.' });
+    }
+
+    db.prepare('DELETE FROM ofertas WHERE id = ?').run(req.params.id);
+
+    res.json({ mensaje: 'Oferta eliminada correctamente.' });
+  } catch (error) {
+    console.error('Error al eliminar oferta:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * POST /api/ofertas/:id/favorito
+ *
+ * Anade una oferta a favoritos del usuario autenticado.
+ * Si ya estaba en favoritos, no hace nada (IGNORE).
+ *
+ * @name addFavorite
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number} req.params.id - ID de la oferta a anadir
+ *
+ * @returns {Object} 201 - Anadido a favoritos
+ *
+ * @throws {401} Si no hay token valido
+ * @throws {404} Si la oferta no existe
+ * @throws {500} Si ocurre un error interno
+ *
+ * @example
+ * fetch('/api/ofertas/3/favorito', {
+ *   method: 'POST',
+ *   headers: { 'Authorization': `Bearer ${token}` }
+ * })
+ */
+router.post('/:id/favorito', verificarToken, (req, res) => {
+  try {
+    const oferta = db.prepare('SELECT id FROM ofertas WHERE id = ?').get(req.params.id);
+    if (!oferta) return res.status(404).json({ error: 'Oferta no encontrada.' });
+    db.prepare('INSERT OR IGNORE INTO favoritos (usuario_id, oferta_id) VALUES (?, ?)')
+      .run(req.usuario.id, req.params.id);
+    res.status(201).json({ mensaje: 'Anadido a favoritos.' });
+  } catch (error) {
+    console.error('Error al anadir favorito:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * DELETE /api/ofertas/:id/favorito
+ *
+ * Elimina una oferta de favoritos del usuario autenticado.
+ * No da error si la oferta no estaba en favoritos.
+ *
+ * @name removeFavorite
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number} req.params.id - ID de la oferta a eliminar
+ *
+ * @returns {Object} 200 - Eliminado de favoritos
+ *
+ * @throws {401} Si no hay token valido
+ * @throws {500} Si ocurre un error interno
+ *
+ * @example
+ * fetch('/api/ofertas/3/favorito', {
+ *   method: 'DELETE',
+ *   headers: { 'Authorization': `Bearer ${token}` }
+ * })
+ */
+router.delete('/:id/favorito', verificarToken, (req, res) => {
+  try {
+    db.prepare('DELETE FROM favoritos WHERE usuario_id = ? AND oferta_id = ?')
+      .run(req.usuario.id, req.params.id);
+    res.json({ mensaje: 'Eliminado de favoritos.' });
+  } catch (error) {
+    console.error('Error al eliminar favorito:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * GET /api/ofertas/:id/similares
+ *
+ * Devuelve ofertas similares basadas en la misma categoria,
+ * excluyendo la oferta actual. Limite de 4 resultados.
+ *
+ * @name getSimilarOffers
+ * @memberof module:routes/jobs
+ * @function
+ * @param {number} req.params.id - ID de la oferta actual
+ *
+ * @returns {Object} 200
+ * @returns {Array} 200.ofertas - Hasta 4 ofertas similares
+ *
+ * @throws {500} Si ocurre un error interno
+ *
+ * @example
+ * fetch('/api/ofertas/3/similares')
+ */
+router.get('/:id/similares', (req, res) => {
+  try {
+    const oferta = db.prepare('SELECT categoria_id FROM ofertas WHERE id = ?').get(req.params.id);
+    if (!oferta || !oferta.categoria_id) return res.json({ ofertas: [] });
+
+    const ofertas = db.prepare(`
+      SELECT o.id, o.titulo, o.precio, o.tipo_precio, o.ubicacion, o.imagen,
+             u.nombre as usuario_nombre,
+             COALESCE(AVG(v.puntuacion), 0) as puntuacion_media
+      FROM ofertas o
+      JOIN usuarios u ON o.usuario_id = u.id
+      LEFT JOIN valoraciones v ON v.usuario_destino_id = o.usuario_id
+      WHERE o.categoria_id = ? AND o.id != ? AND o.estado = 'activa'
+      GROUP BY o.id
+      ORDER BY o.creado_en DESC LIMIT 4
+    `).all(oferta.categoria_id, req.params.id);
+    res.json({ ofertas });
+  } catch (error) {
+    console.error('Error al obtener ofertas similares:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+module.exports = router;
