@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>db - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-db.html">db</a><ul class='methods'><li data-type='method'><a href="module-db.html#.inicializarBaseDeDatos">inicializarBaseDeDatos</a></li><li data-type='method'><a href="module-db.html#.obtenerDB">obtenerDB</a></li></ul></li><li><a href="module-middleware_auth.html">middleware/auth</a><ul class='methods'><li data-type='method'><a href="module-middleware_auth.html#.verificarAdmin">verificarAdmin</a></li><li data-type='method'><a href="module-middleware_auth.html#.verificarToken">verificarToken</a></li></ul></li><li><a href="module-routes_admin.html">routes/admin</a><ul class='methods'><li data-type='method'><a href="module-routes_admin.html#.adminUpdateOffer">adminUpdateOffer</a></li><li data-type='method'><a href="module-routes_admin.html#.adminUpdateUser">adminUpdateUser</a></li><li data-type='method'><a href="module-routes_admin.html#.createCategory">createCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.dashboard">dashboard</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteCategory">deleteCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteUser">deleteUser</a></li><li data-type='method'><a href="module-routes_admin.html#.listApplications">listApplications</a></li><li data-type='method'><a href="module-routes_admin.html#.listOffers">listOffers</a></li><li data-type='method'><a href="module-routes_admin.html#.listUsers">listUsers</a></li><li data-type='method'><a href="module-routes_admin.html#.updateOfferStatus">updateOfferStatus</a></li></ul></li><li><a href="module-routes_auth.html">routes/auth</a><ul class='methods'><li data-type='method'><a href="module-routes_auth.html#.changePassword">changePassword</a></li><li data-type='method'><a href="module-routes_auth.html#.getProfile">getProfile</a></li><li data-type='method'><a href="module-routes_auth.html#.login">login</a></li><li data-type='method'><a href="module-routes_auth.html#.register">register</a></li><li data-type='method'><a href="module-routes_auth.html#.updateProfile">updateProfile</a></li></ul></li><li><a href="module-routes_demandantes.html">routes/demandantes</a><ul class='methods'><li data-type='method'><a href="module-routes_demandantes.html#.getDemandante">getDemandante</a></li><li data-type='method'><a href="module-routes_demandantes.html#.listDemandantes">listDemandantes</a></li></ul></li><li><a href="module-routes_destacados.html">routes/destacados</a><ul class='methods'><li data-type='method'><a href="module-routes_destacados.html#.createDestacado">createDestacado</a></li></ul></li><li><a href="module-routes_geocode.html">routes/geocode</a><ul class='methods'><li data-type='method'><a href="module-routes_geocode.html#.geocodeAddress">geocodeAddress</a></li></ul></li><li><a href="module-routes_jobs.html">routes/jobs</a><ul class='methods'><li data-type='method'><a href="module-routes_jobs.html#.addFavorite">addFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.applyToOffer">applyToOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.createOffer">createOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.deleteOffer">deleteOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getApplications">getApplications</a></li><li data-type='method'><a href="module-routes_jobs.html#.getOffer">getOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getSimilarOffers">getSimilarOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.listCategories">listCategories</a></li><li data-type='method'><a href="module-routes_jobs.html#.myFavorites">myFavorites</a></li><li data-type='method'><a href="module-routes_jobs.html#.myOffers">myOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.removeFavorite">removeFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.respondToApplication">respondToApplication</a></li><li data-type='method'><a href="module-routes_jobs.html#.searchOffers">searchOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.updateOffer">updateOffer</a></li></ul></li><li><a href="module-routes_notifications.html">routes/notifications</a><ul class='methods'><li data-type='method'><a href="module-routes_notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-routes_notifications.html#.markNotificationsRead">markNotificationsRead</a></li><li data-type='method'><a href="module-routes_notifications.html#~crearNotificacion">crearNotificacion</a></li></ul></li><li><a href="module-routes_ratings.html">routes/ratings</a><ul class='methods'><li data-type='method'><a href="module-routes_ratings.html#.createRating">createRating</a></li><li data-type='method'><a href="module-routes_ratings.html#.getUserRatings">getUserRatings</a></li></ul></li><li><a href="module-routes_solicitudes.html">routes/solicitudes</a><ul class='methods'><li data-type='method'><a href="module-routes_solicitudes.html#.getMyApplications">getMyApplications</a></li></ul></li><li><a href="module-routes_users.html">routes/users</a><ul class='methods'><li data-type='method'><a href="module-routes_users.html#.getPublicProfile">getPublicProfile</a></li></ul></li><li><a href="module-server.html">server</a><ul class='methods'><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.apiRoot">apiRoot</a></li><li data-type='method'><a href="module-server.html#.authRoutes">authRoutes</a></li><li data-type='method'><a href="module-server.html#.cors">cors</a></li><li data-type='method'><a href="module-server.html#.demandantesRoutes">demandantesRoutes</a></li><li data-type='method'><a href="module-server.html#.destacadosRoutes">destacadosRoutes</a></li><li data-type='method'><a href="module-server.html#.docsStatic">docsStatic</a></li><li data-type='method'><a href="module-server.html#.frontendStatic">frontendStatic</a></li><li data-type='method'><a href="module-server.html#.geocodeRoutes">geocodeRoutes</a></li><li data-type='method'><a href="module-server.html#.jobsRoutes">jobsRoutes</a></li><li data-type='method'><a href="module-server.html#.jsonParser">jsonParser</a></li><li data-type='method'><a href="module-server.html#.listen">listen</a></li><li data-type='method'><a href="module-server.html#.notifRoutes">notifRoutes</a></li><li data-type='method'><a href="module-server.html#.ratingsRoutes">ratingsRoutes</a></li><li data-type='method'><a href="module-server.html#.solicitudesRoutes">solicitudesRoutes</a></li><li data-type='method'><a href="module-server.html#.spaFallback">spaFallback</a></li><li data-type='method'><a href="module-server.html#.uploadsStatic">uploadsStatic</a></li><li data-type='method'><a href="module-server.html#.urlencodedParser">urlencodedParser</a></li><li data-type='method'><a href="module-server.html#.usersRoutes">usersRoutes</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">db</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description usertext">Conexion a la base de datos SQLite para Chambaya.
+
+Proporciona una unica instancia de better-sqlite3 y la funcion de
+inicializacion que crea todas las tablas del esquema si no existen.</div>
+            
+
+            
+                
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Conexion a la base de datos SQLite para Chambaya.
+
+Proporciona una unica instancia de better-sqlite3 y la funcion de
+inicializacion que crea todas las tablas del esquema si no existen.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="db.js.html">db.js</a>, <a href="db.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:better-sqlite3</li>
+        
+            <li>module:path</li>
+        </ul>
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="~DB_PATH"><span class="type-signature type-signature-inner, constant">(inner, constant) </span>DB_PATH<span class="type-signature"> :string</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Ruta absoluta al archivo de base de datos SQLite.
+
+El archivo se almacena en el mismo directorio que este modulo
+con el nombre {@code chambaya.db}.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="db.js.html">db.js</a>, <a href="db.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    Ruta absoluta al archivo de base de datos SQLite.
+
+El archivo se almacena en el mismo directorio que este modulo
+con el nombre {@code chambaya.db}.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~db"><span class="type-signature type-signature-inner, constant">(inner, constant) </span>db<span class="type-signature"> :Database</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Instancia unica de la base de datos SQLite.
+
+Se crea una unica instancia al cargar el modulo y se reutiliza
+en toda la aplicacion mediante los exports.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="db.js.html">db.js</a>, <a href="db.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md">https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    Instancia unica de la base de datos SQLite.
+
+Se crea una unica instancia al cargar el modulo y se reutiliza
+en toda la aplicacion mediante los exports.
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Database</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".inicializarBaseDeDatos"><span class="type-signature type-signature-static">(static) </span>inicializarBaseDeDatos<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Crea todas las tablas del esquema si no existen.
+
+Tablas creadas:
+- `usuarios` — Cuentas de usuario (ofertantes, demandantes, admin)
+- `categorias` — Categorias de ofertas de trabajo
+- `ofertas` — Ofertas de trabajo publicadas por ofertantes
+- `valoraciones` — Valoraciones entre usuarios tras un trabajo
+- `solicitudes` — Solicitudes de postulacion a ofertas
+
+Cada tabla incluye sus restricciones CHECK, claves foraneas y valores
+por defecto. Se ejecuta una unica vez al cargar el modulo.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="db.js.html">db.js</a>, <a href="db.js.html#line55">line 55</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>// Uso tipico (se ejecuta automaticamente al importar el modulo)
+const { db } = require('./db');</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".obtenerDB"><span class="type-signature type-signature-static">(static) </span>obtenerDB<span class="signature">()</span><span class="type-signature"> &rarr; {Database}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Devuelve la instancia unica de la base de datos.
+
+Util para acceder a la base de datos desde modulos que no la
+importaron directamente.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="db.js.html">db.js</a>, <a href="db.js.html#line186">line 186</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>const { obtenerDB } = require('./db');
+const db = obtenerDB();
+const usuarios = db.prepare('SELECT * FROM usuarios').all();</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    Instancia de better-sqlite3
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Database</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Jun 04 2026 13:34:06 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

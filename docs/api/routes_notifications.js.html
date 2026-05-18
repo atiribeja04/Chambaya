@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>routes/notifications.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-db.html">db</a><ul class='methods'><li data-type='method'><a href="module-db.html#.inicializarBaseDeDatos">inicializarBaseDeDatos</a></li><li data-type='method'><a href="module-db.html#.obtenerDB">obtenerDB</a></li></ul></li><li><a href="module-middleware_auth.html">middleware/auth</a><ul class='methods'><li data-type='method'><a href="module-middleware_auth.html#.verificarAdmin">verificarAdmin</a></li><li data-type='method'><a href="module-middleware_auth.html#.verificarToken">verificarToken</a></li></ul></li><li><a href="module-routes_admin.html">routes/admin</a><ul class='methods'><li data-type='method'><a href="module-routes_admin.html#.adminUpdateOffer">adminUpdateOffer</a></li><li data-type='method'><a href="module-routes_admin.html#.adminUpdateUser">adminUpdateUser</a></li><li data-type='method'><a href="module-routes_admin.html#.createCategory">createCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.dashboard">dashboard</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteCategory">deleteCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteUser">deleteUser</a></li><li data-type='method'><a href="module-routes_admin.html#.listApplications">listApplications</a></li><li data-type='method'><a href="module-routes_admin.html#.listOffers">listOffers</a></li><li data-type='method'><a href="module-routes_admin.html#.listUsers">listUsers</a></li><li data-type='method'><a href="module-routes_admin.html#.updateOfferStatus">updateOfferStatus</a></li></ul></li><li><a href="module-routes_auth.html">routes/auth</a><ul class='methods'><li data-type='method'><a href="module-routes_auth.html#.changePassword">changePassword</a></li><li data-type='method'><a href="module-routes_auth.html#.getProfile">getProfile</a></li><li data-type='method'><a href="module-routes_auth.html#.login">login</a></li><li data-type='method'><a href="module-routes_auth.html#.register">register</a></li><li data-type='method'><a href="module-routes_auth.html#.updateProfile">updateProfile</a></li></ul></li><li><a href="module-routes_demandantes.html">routes/demandantes</a><ul class='methods'><li data-type='method'><a href="module-routes_demandantes.html#.getDemandante">getDemandante</a></li><li data-type='method'><a href="module-routes_demandantes.html#.listDemandantes">listDemandantes</a></li></ul></li><li><a href="module-routes_destacados.html">routes/destacados</a><ul class='methods'><li data-type='method'><a href="module-routes_destacados.html#.createDestacado">createDestacado</a></li></ul></li><li><a href="module-routes_geocode.html">routes/geocode</a><ul class='methods'><li data-type='method'><a href="module-routes_geocode.html#.geocodeAddress">geocodeAddress</a></li></ul></li><li><a href="module-routes_jobs.html">routes/jobs</a><ul class='methods'><li data-type='method'><a href="module-routes_jobs.html#.addFavorite">addFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.applyToOffer">applyToOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.createOffer">createOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.deleteOffer">deleteOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getApplications">getApplications</a></li><li data-type='method'><a href="module-routes_jobs.html#.getOffer">getOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getSimilarOffers">getSimilarOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.listCategories">listCategories</a></li><li data-type='method'><a href="module-routes_jobs.html#.myFavorites">myFavorites</a></li><li data-type='method'><a href="module-routes_jobs.html#.myOffers">myOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.removeFavorite">removeFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.respondToApplication">respondToApplication</a></li><li data-type='method'><a href="module-routes_jobs.html#.searchOffers">searchOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.updateOffer">updateOffer</a></li></ul></li><li><a href="module-routes_notifications.html">routes/notifications</a><ul class='methods'><li data-type='method'><a href="module-routes_notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-routes_notifications.html#.markNotificationsRead">markNotificationsRead</a></li><li data-type='method'><a href="module-routes_notifications.html#~crearNotificacion">crearNotificacion</a></li></ul></li><li><a href="module-routes_ratings.html">routes/ratings</a><ul class='methods'><li data-type='method'><a href="module-routes_ratings.html#.createRating">createRating</a></li><li data-type='method'><a href="module-routes_ratings.html#.getUserRatings">getUserRatings</a></li></ul></li><li><a href="module-routes_solicitudes.html">routes/solicitudes</a><ul class='methods'><li data-type='method'><a href="module-routes_solicitudes.html#.getMyApplications">getMyApplications</a></li></ul></li><li><a href="module-routes_users.html">routes/users</a><ul class='methods'><li data-type='method'><a href="module-routes_users.html#.getPublicProfile">getPublicProfile</a></li></ul></li><li><a href="module-server.html">server</a><ul class='methods'><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.apiRoot">apiRoot</a></li><li data-type='method'><a href="module-server.html#.authRoutes">authRoutes</a></li><li data-type='method'><a href="module-server.html#.cors">cors</a></li><li data-type='method'><a href="module-server.html#.demandantesRoutes">demandantesRoutes</a></li><li data-type='method'><a href="module-server.html#.destacadosRoutes">destacadosRoutes</a></li><li data-type='method'><a href="module-server.html#.docsStatic">docsStatic</a></li><li data-type='method'><a href="module-server.html#.frontendStatic">frontendStatic</a></li><li data-type='method'><a href="module-server.html#.geocodeRoutes">geocodeRoutes</a></li><li data-type='method'><a href="module-server.html#.jobsRoutes">jobsRoutes</a></li><li data-type='method'><a href="module-server.html#.jsonParser">jsonParser</a></li><li data-type='method'><a href="module-server.html#.listen">listen</a></li><li data-type='method'><a href="module-server.html#.notifRoutes">notifRoutes</a></li><li data-type='method'><a href="module-server.html#.ratingsRoutes">ratingsRoutes</a></li><li data-type='method'><a href="module-server.html#.solicitudesRoutes">solicitudesRoutes</a></li><li data-type='method'><a href="module-server.html#.spaFallback">spaFallback</a></li><li data-type='method'><a href="module-server.html#.uploadsStatic">uploadsStatic</a></li><li data-type='method'><a href="module-server.html#.urlencodedParser">urlencodedParser</a></li><li data-type='method'><a href="module-server.html#.usersRoutes">usersRoutes</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">routes/notifications.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file Rutas de notificaciones para Chambaya.
+ *
+ * Gestiona las notificaciones internas de la plataforma:
+ * - Notificar al ofertante cuando alguien se postula
+ * - Notificar al demandante cuando su solicitud es aceptada/rechazada
+ * - Marcar notificaciones como leidas
+ *
+ * @module routes/notifications
+ * @requires express
+ * @requires ../db
+ * @requires ../middleware/auth
+ */
+
+const express = require('express');
+const { db } = require('../db');
+const { verificarToken } = require('../middleware/auth');
+
+const router = express.Router();
+
+/**
+ * Crea una notificacion interna para un usuario.
+ * Usada por otros modulos del backend (jobs, solicitudes, etc.).
+ *
+ * @function
+ * @name crearNotificacion
+ * @param {number} usuarioId    - ID del usuario destinatario
+ * @param {string} tipo         - Tipo de notificacion
+ * @param {string} mensaje      - Texto de la notificacion
+ * @param {number} [referenciaId] - ID opcional de la oferta relacionada
+ * @returns {void}
+ *
+ * @example
+ * crearNotificacion(3, 'nueva_solicitud', 'Maria se ha postulado a tu oferta', 5);
+ */
+function crearNotificacion(usuarioId, tipo, mensaje, referenciaId) {
+  db.prepare(
+    'INSERT INTO notificaciones (usuario_id, tipo, mensaje, referencia_id) VALUES (?, ?, ?, ?)'
+  ).run(usuarioId, tipo, mensaje, referenciaId || null);
+}
+
+/**
+ * GET /api/notificaciones
+ *
+ * Obtiene las notificaciones del usuario autenticado, ordenadas
+ * por fecha de creacion descendente. Incluye el conteo de no leidas.
+ *
+ * @name getNotifications
+ * @memberof module:routes/notifications
+ * @function
+ * @returns {Object} 200
+ * @returns {Array}  200.notificaciones - Lista de notificaciones
+ * @returns {number} 200.noLeidas       - Cantidad de notificaciones sin leer
+ *
+ * @throws {401} Si no hay token valido
+ * @throws {500} Si ocurre un error interno
+ *
+ * @example
+ * fetch('/api/notificaciones', {
+ *   headers: { 'Authorization': `Bearer ${token}` }
+ * })
+ */
+router.get('/', verificarToken, (req, res) => {
+  try {
+    const notificaciones = db.prepare(`
+      SELECT * FROM notificaciones WHERE usuario_id = ? ORDER BY creado_en DESC LIMIT 50
+    `).all(req.usuario.id);
+    const noLeidas = db.prepare(
+      'SELECT COUNT(*) as total FROM notificaciones WHERE usuario_id = ? AND leida = 0'
+    ).get(req.usuario.id);
+    res.json({ notificaciones, noLeidas: noLeidas.total });
+  } catch (error) {
+    console.error('Error al obtener notificaciones:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * PUT /api/notificaciones/leer
+ *
+ * Marca todas las notificaciones del usuario autenticado como leidas.
+ *
+ * @name markNotificationsRead
+ * @memberof module:routes/notifications
+ * @function
+ * @returns {Object} 200
+ * @returns {string} 200.mensaje - Confirmacion
+ *
+ * @throws {401} Si no hay token valido
+ * @throws {500} Si ocurre un error interno
+ *
+ * @example
+ * fetch('/api/notificaciones/leer', {
+ *   method: 'PUT',
+ *   headers: { 'Authorization': `Bearer ${token}` }
+ * })
+ */
+router.put('/leer', verificarToken, (req, res) => {
+  try {
+    db.prepare('UPDATE notificaciones SET leida = 1 WHERE usuario_id = ?').run(req.usuario.id);
+    res.json({ mensaje: 'Notificaciones marcadas como leidas.' });
+  } catch (error) {
+    console.error('Error al marcar notificaciones:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+module.exports = { router, crearNotificacion };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Jun 04 2026 13:34:06 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>middleware/auth.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-db.html">db</a><ul class='methods'><li data-type='method'><a href="module-db.html#.inicializarBaseDeDatos">inicializarBaseDeDatos</a></li><li data-type='method'><a href="module-db.html#.obtenerDB">obtenerDB</a></li></ul></li><li><a href="module-middleware_auth.html">middleware/auth</a><ul class='methods'><li data-type='method'><a href="module-middleware_auth.html#.verificarAdmin">verificarAdmin</a></li><li data-type='method'><a href="module-middleware_auth.html#.verificarToken">verificarToken</a></li></ul></li><li><a href="module-routes_admin.html">routes/admin</a><ul class='methods'><li data-type='method'><a href="module-routes_admin.html#.adminUpdateOffer">adminUpdateOffer</a></li><li data-type='method'><a href="module-routes_admin.html#.adminUpdateUser">adminUpdateUser</a></li><li data-type='method'><a href="module-routes_admin.html#.createCategory">createCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.dashboard">dashboard</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteCategory">deleteCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteUser">deleteUser</a></li><li data-type='method'><a href="module-routes_admin.html#.listApplications">listApplications</a></li><li data-type='method'><a href="module-routes_admin.html#.listOffers">listOffers</a></li><li data-type='method'><a href="module-routes_admin.html#.listUsers">listUsers</a></li><li data-type='method'><a href="module-routes_admin.html#.updateOfferStatus">updateOfferStatus</a></li></ul></li><li><a href="module-routes_auth.html">routes/auth</a><ul class='methods'><li data-type='method'><a href="module-routes_auth.html#.changePassword">changePassword</a></li><li data-type='method'><a href="module-routes_auth.html#.getProfile">getProfile</a></li><li data-type='method'><a href="module-routes_auth.html#.login">login</a></li><li data-type='method'><a href="module-routes_auth.html#.register">register</a></li><li data-type='method'><a href="module-routes_auth.html#.updateProfile">updateProfile</a></li></ul></li><li><a href="module-routes_demandantes.html">routes/demandantes</a><ul class='methods'><li data-type='method'><a href="module-routes_demandantes.html#.getDemandante">getDemandante</a></li><li data-type='method'><a href="module-routes_demandantes.html#.listDemandantes">listDemandantes</a></li></ul></li><li><a href="module-routes_destacados.html">routes/destacados</a><ul class='methods'><li data-type='method'><a href="module-routes_destacados.html#.createDestacado">createDestacado</a></li></ul></li><li><a href="module-routes_geocode.html">routes/geocode</a><ul class='methods'><li data-type='method'><a href="module-routes_geocode.html#.geocodeAddress">geocodeAddress</a></li></ul></li><li><a href="module-routes_jobs.html">routes/jobs</a><ul class='methods'><li data-type='method'><a href="module-routes_jobs.html#.addFavorite">addFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.applyToOffer">applyToOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.createOffer">createOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.deleteOffer">deleteOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getApplications">getApplications</a></li><li data-type='method'><a href="module-routes_jobs.html#.getOffer">getOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getSimilarOffers">getSimilarOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.listCategories">listCategories</a></li><li data-type='method'><a href="module-routes_jobs.html#.myFavorites">myFavorites</a></li><li data-type='method'><a href="module-routes_jobs.html#.myOffers">myOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.removeFavorite">removeFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.respondToApplication">respondToApplication</a></li><li data-type='method'><a href="module-routes_jobs.html#.searchOffers">searchOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.updateOffer">updateOffer</a></li></ul></li><li><a href="module-routes_notifications.html">routes/notifications</a><ul class='methods'><li data-type='method'><a href="module-routes_notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-routes_notifications.html#.markNotificationsRead">markNotificationsRead</a></li><li data-type='method'><a href="module-routes_notifications.html#~crearNotificacion">crearNotificacion</a></li></ul></li><li><a href="module-routes_ratings.html">routes/ratings</a><ul class='methods'><li data-type='method'><a href="module-routes_ratings.html#.createRating">createRating</a></li><li data-type='method'><a href="module-routes_ratings.html#.getUserRatings">getUserRatings</a></li></ul></li><li><a href="module-routes_solicitudes.html">routes/solicitudes</a><ul class='methods'><li data-type='method'><a href="module-routes_solicitudes.html#.getMyApplications">getMyApplications</a></li></ul></li><li><a href="module-routes_users.html">routes/users</a><ul class='methods'><li data-type='method'><a href="module-routes_users.html#.getPublicProfile">getPublicProfile</a></li></ul></li><li><a href="module-server.html">server</a><ul class='methods'><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.apiRoot">apiRoot</a></li><li data-type='method'><a href="module-server.html#.authRoutes">authRoutes</a></li><li data-type='method'><a href="module-server.html#.cors">cors</a></li><li data-type='method'><a href="module-server.html#.demandantesRoutes">demandantesRoutes</a></li><li data-type='method'><a href="module-server.html#.destacadosRoutes">destacadosRoutes</a></li><li data-type='method'><a href="module-server.html#.docsStatic">docsStatic</a></li><li data-type='method'><a href="module-server.html#.frontendStatic">frontendStatic</a></li><li data-type='method'><a href="module-server.html#.geocodeRoutes">geocodeRoutes</a></li><li data-type='method'><a href="module-server.html#.jobsRoutes">jobsRoutes</a></li><li data-type='method'><a href="module-server.html#.jsonParser">jsonParser</a></li><li data-type='method'><a href="module-server.html#.listen">listen</a></li><li data-type='method'><a href="module-server.html#.notifRoutes">notifRoutes</a></li><li data-type='method'><a href="module-server.html#.ratingsRoutes">ratingsRoutes</a></li><li data-type='method'><a href="module-server.html#.solicitudesRoutes">solicitudesRoutes</a></li><li data-type='method'><a href="module-server.html#.spaFallback">spaFallback</a></li><li data-type='method'><a href="module-server.html#.uploadsStatic">uploadsStatic</a></li><li data-type='method'><a href="module-server.html#.urlencodedParser">urlencodedParser</a></li><li data-type='method'><a href="module-server.html#.usersRoutes">usersRoutes</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">middleware/auth.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file Middleware de autenticacion para Chambaya.
+ *
+ * Proporciona dos middlewares de Express:
+ * - `verificarToken` —  extrae y valida el JWT del header Authorization.
+ * - `verificarAdmin` —  comprueba que el usuario autenticado sea admin.
+ *
+ * @module middleware/auth
+ * @requires jsonwebtoken
+ */
+
+const jwt = require('jsonwebtoken');
+
+/**
+ * Clave secreta usada para firmar y verificar los tokens JWT.
+ *
+ * En produccion debe definirse mediante la variable de entorno
+ * `JWT_SECRET`. En desarrollo se usa un valor por defecto.
+ *
+ * @type {string}
+ * @constant
+ * @default 'chambaya_secret_key_2024'
+ *
+ * @example
+ * // En produccion, configurar antes de arrancar:
+ * process.env.JWT_SECRET = 'una-frase-muy-segura';
+ */
+const JWT_SECRET = process.env.JWT_SECRET || 'chambaya_secret_key_2024';
+
+/**
+ * Verifica que la peticion incluya un token JWT valido en el header
+ * `Authorization` con formato `Bearer &lt;token>`.
+ *
+ * Si el token es valido, decodifica su payload y lo asigna a
+ * `req.usuario` para que los siguientes middlewares o rutas puedan
+ * acceder a los datos del usuario autenticado.
+ *
+ * @function
+ * @name verificarToken
+ * @memberof module:middleware/auth
+ * @param {Object} req  - Objeto de peticion
+ * @param {Object} res - Objeto de respuesta
+ * @param {Function} next - Siguiente middleware
+ * @returns {void}
+ *
+ * @throws {401} Si no se proporciona token
+ * @throws {403} Si el token es invalido o ha expirado
+ *
+ * @example
+ * router.get('/perfil', verificarToken, (req, res) => {
+ *   res.json({ usuario: req.usuario });
+ * });
+ */
+function verificarToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader &amp;&amp; authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ error: 'Acceso denegado. Token requerido.' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.usuario = decoded;
+    next();
+  } catch (error) {
+    return res.status(403).json({ error: 'Token invalido o expirado.' });
+  }
+}
+
+/**
+ * Verifica que el usuario autenticado tenga el tipo `'admin'`.
+ *
+ * Debe ejecutarse **despues** de `verificarToken`, ya que necesita
+ * los datos del usuario decodificados en `req.usuario`.
+ *
+ * @function
+ * @name verificarAdmin
+ * @memberof module:middleware/auth
+ * @param {Object} req  - Objeto de peticion
+ * @param {Object} res - Objeto de respuesta
+ * @param {Function} next - Siguiente middleware
+ * @returns {void}
+ *
+ * @throws {403} Si el usuario no es administrador
+ *
+ * @example
+ * router.delete('/usuarios/:id', verificarToken, verificarAdmin, (req, res) => {
+ *   // Solo admins pueden eliminar usuarios
+ * });
+ */
+function verificarAdmin(req, res, next) {
+  if (req.usuario.tipo !== 'admin') {
+    return res.status(403).json({ error: 'Acceso denegado. Se requieren permisos de administrador.' });
+  }
+  next();
+}
+
+module.exports = { verificarToken, verificarAdmin, JWT_SECRET };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Jun 04 2026 13:34:06 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

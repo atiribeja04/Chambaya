@@ -1,0 +1,4060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>routes/jobs - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-db.html">db</a><ul class='methods'><li data-type='method'><a href="module-db.html#.inicializarBaseDeDatos">inicializarBaseDeDatos</a></li><li data-type='method'><a href="module-db.html#.obtenerDB">obtenerDB</a></li></ul></li><li><a href="module-middleware_auth.html">middleware/auth</a><ul class='methods'><li data-type='method'><a href="module-middleware_auth.html#.verificarAdmin">verificarAdmin</a></li><li data-type='method'><a href="module-middleware_auth.html#.verificarToken">verificarToken</a></li></ul></li><li><a href="module-routes_admin.html">routes/admin</a><ul class='methods'><li data-type='method'><a href="module-routes_admin.html#.adminUpdateOffer">adminUpdateOffer</a></li><li data-type='method'><a href="module-routes_admin.html#.adminUpdateUser">adminUpdateUser</a></li><li data-type='method'><a href="module-routes_admin.html#.createCategory">createCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.dashboard">dashboard</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteCategory">deleteCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteUser">deleteUser</a></li><li data-type='method'><a href="module-routes_admin.html#.listApplications">listApplications</a></li><li data-type='method'><a href="module-routes_admin.html#.listOffers">listOffers</a></li><li data-type='method'><a href="module-routes_admin.html#.listUsers">listUsers</a></li><li data-type='method'><a href="module-routes_admin.html#.updateOfferStatus">updateOfferStatus</a></li></ul></li><li><a href="module-routes_auth.html">routes/auth</a><ul class='methods'><li data-type='method'><a href="module-routes_auth.html#.changePassword">changePassword</a></li><li data-type='method'><a href="module-routes_auth.html#.getProfile">getProfile</a></li><li data-type='method'><a href="module-routes_auth.html#.login">login</a></li><li data-type='method'><a href="module-routes_auth.html#.register">register</a></li><li data-type='method'><a href="module-routes_auth.html#.updateProfile">updateProfile</a></li></ul></li><li><a href="module-routes_demandantes.html">routes/demandantes</a><ul class='methods'><li data-type='method'><a href="module-routes_demandantes.html#.getDemandante">getDemandante</a></li><li data-type='method'><a href="module-routes_demandantes.html#.listDemandantes">listDemandantes</a></li></ul></li><li><a href="module-routes_destacados.html">routes/destacados</a><ul class='methods'><li data-type='method'><a href="module-routes_destacados.html#.createDestacado">createDestacado</a></li></ul></li><li><a href="module-routes_geocode.html">routes/geocode</a><ul class='methods'><li data-type='method'><a href="module-routes_geocode.html#.geocodeAddress">geocodeAddress</a></li></ul></li><li><a href="module-routes_jobs.html">routes/jobs</a><ul class='methods'><li data-type='method'><a href="module-routes_jobs.html#.addFavorite">addFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.applyToOffer">applyToOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.createOffer">createOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.deleteOffer">deleteOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getApplications">getApplications</a></li><li data-type='method'><a href="module-routes_jobs.html#.getOffer">getOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getSimilarOffers">getSimilarOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.listCategories">listCategories</a></li><li data-type='method'><a href="module-routes_jobs.html#.myFavorites">myFavorites</a></li><li data-type='method'><a href="module-routes_jobs.html#.myOffers">myOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.removeFavorite">removeFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.respondToApplication">respondToApplication</a></li><li data-type='method'><a href="module-routes_jobs.html#.searchOffers">searchOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.updateOffer">updateOffer</a></li></ul></li><li><a href="module-routes_notifications.html">routes/notifications</a><ul class='methods'><li data-type='method'><a href="module-routes_notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-routes_notifications.html#.markNotificationsRead">markNotificationsRead</a></li><li data-type='method'><a href="module-routes_notifications.html#~crearNotificacion">crearNotificacion</a></li></ul></li><li><a href="module-routes_ratings.html">routes/ratings</a><ul class='methods'><li data-type='method'><a href="module-routes_ratings.html#.createRating">createRating</a></li><li data-type='method'><a href="module-routes_ratings.html#.getUserRatings">getUserRatings</a></li></ul></li><li><a href="module-routes_solicitudes.html">routes/solicitudes</a><ul class='methods'><li data-type='method'><a href="module-routes_solicitudes.html#.getMyApplications">getMyApplications</a></li></ul></li><li><a href="module-routes_users.html">routes/users</a><ul class='methods'><li data-type='method'><a href="module-routes_users.html#.getPublicProfile">getPublicProfile</a></li></ul></li><li><a href="module-server.html">server</a><ul class='methods'><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.apiRoot">apiRoot</a></li><li data-type='method'><a href="module-server.html#.authRoutes">authRoutes</a></li><li data-type='method'><a href="module-server.html#.cors">cors</a></li><li data-type='method'><a href="module-server.html#.demandantesRoutes">demandantesRoutes</a></li><li data-type='method'><a href="module-server.html#.destacadosRoutes">destacadosRoutes</a></li><li data-type='method'><a href="module-server.html#.docsStatic">docsStatic</a></li><li data-type='method'><a href="module-server.html#.frontendStatic">frontendStatic</a></li><li data-type='method'><a href="module-server.html#.geocodeRoutes">geocodeRoutes</a></li><li data-type='method'><a href="module-server.html#.jobsRoutes">jobsRoutes</a></li><li data-type='method'><a href="module-server.html#.jsonParser">jsonParser</a></li><li data-type='method'><a href="module-server.html#.listen">listen</a></li><li data-type='method'><a href="module-server.html#.notifRoutes">notifRoutes</a></li><li data-type='method'><a href="module-server.html#.ratingsRoutes">ratingsRoutes</a></li><li data-type='method'><a href="module-server.html#.solicitudesRoutes">solicitudesRoutes</a></li><li data-type='method'><a href="module-server.html#.spaFallback">spaFallback</a></li><li data-type='method'><a href="module-server.html#.uploadsStatic">uploadsStatic</a></li><li data-type='method'><a href="module-server.html#.urlencodedParser">urlencodedParser</a></li><li data-type='method'><a href="module-server.html#.usersRoutes">usersRoutes</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">routes/jobs</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description usertext">Rutas de ofertas de trabajo para Chambaya.
+
+Gestiona el CRUD completo de ofertas laborales: creacion, busqueda
+con filtros, detalle, actualizacion y eliminacion. Tambien maneja
+las solicitudes de postulacion de los demandantes.</div>
+            
+
+            
+                
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>Rutas de ofertas de trabajo para Chambaya.
+
+Gestiona el CRUD completo de ofertas laborales: creacion, busqueda
+con filtros, detalle, actualizacion y eliminacion. Tambien maneja
+las solicitudes de postulacion de los demandantes.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+        <h3 class="subsection-title">Requires</h3>
+
+        <ul>
+            <li>module:express</li>
+        
+            <li>module:../db</li>
+        
+            <li>module:../middleware/auth</li>
+        </ul>
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".addFavorite"><span class="type-signature type-signature-static">(static) </span>addFavorite<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>POST /api/ofertas/:id/favorito
+
+Anade una oferta a favoritos del usuario autenticado.
+Si ya estaba en favoritos, no hace nada (IGNORE).</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line655">line 655</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3/favorito', {
+  method: 'POST',
+  headers: { 'Authorization': `Bearer ${token}` }
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la oferta a anadir</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si no hay token valido
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">401</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si la oferta no existe
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">404</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si ocurre un error interno
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">500</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    201 - Anadido a favoritos
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".applyToOffer"><span class="type-signature type-signature-static">(static) </span>applyToOffer<span class="signature">()</span><span class="type-signature"> &rarr; {Object|string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>POST /api/ofertas/:id/solicitar
+
+Envia una solicitud para postularse a una oferta de trabajo.
+
+El usuario autenticado se postula a la oferta especificada.
+No puede postularse a sus propias ofertas ni a ofertas que ya
+haya solicitado anteriormente.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line486">line 486</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3/solicitar', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+  body: JSON.stringify({ mensaje: 'Hola! Me interesa el trabajo. Tengo experiencia.' })
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">ID de la oferta</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.mensaje</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Mensaje opcional para el ofertante</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si la oferta no existe
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">404</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si la oferta no esta activa
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">400</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si el usuario es el creador de la oferta
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">400</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si el usuario ya ha solicitado esta oferta
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">409</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    201 - Solicitud enviada
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    201.mensaje - Confirmacion
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".createOffer"><span class="type-signature type-signature-static">(static) </span>createOffer<span class="signature">()</span><span class="type-signature"> &rarr; {Object|string|Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>POST /api/ofertas
+
+Crea una nueva oferta de trabajo.
+
+Solo los usuarios con tipo `'ofertante'` pueden publicar ofertas.
+Los campos obligatorios son `titulo` y `descripcion`.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line282">line 282</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+  body: JSON.stringify({
+    titulo: 'Limpieza de piso 80m2',
+    descripcion: 'Necesito alguien para limpiar un piso en el centro...',
+    ubicacion: 'Madrid',
+    precio: 45,
+    tipo_precio: 'fijo',
+    categoria_id: 1
+  })
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.titulo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Titulo de la oferta</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.descripcion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Descripcion detallada del trabajo</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.ubicacion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Ubicacion donde se realiza el trabajo</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.precio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Precio ofrecido</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.tipo_precio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Tipo: `'por_hora'` | `'por_dia'` | `'fijo'` (default: 'fijo')</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.categoria_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">ID de la categoria</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si faltan titulo o descripcion
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">400</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si el usuario no es ofertante
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">403</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    201 - Oferta creada
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    201.mensaje - Confirmacion
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    201.oferta  - Datos de la oferta recien creada
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".deleteOffer"><span class="type-signature type-signature-static">(static) </span>deleteOffer<span class="signature">()</span><span class="type-signature"> &rarr; {Object|string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>DELETE /api/ofertas/:id
+
+Elimina una oferta del sistema.
+
+Solo el creador de la oferta o un administrador puede eliminarla.
+La operacion es permanente (no hay papelera de reciclaje).</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line610">line 610</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3', {
+  method: 'DELETE',
+  headers: { 'Authorization': `Bearer ${token}` }
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la oferta a eliminar</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si la oferta no existe
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">404</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si el usuario no es el creador ni admin
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">403</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200 - Oferta eliminada
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.mensaje - Confirmacion
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getApplications"><span class="type-signature type-signature-static">(static) </span>getApplications<span class="signature">()</span><span class="type-signature"> &rarr; {Object|Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>GET /api/ofertas/:id/solicitudes
+
+Obtiene las solicitudes de postulacion recibidas para una oferta.
+
+Solo el creador de la oferta o un administrador pueden ver las
+solicitudes. Incluye datos de contacto del solicitante (nombre,
+email, telefono, ubicacion).</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line438">line 438</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3/solicitudes', {
+  headers: { 'Authorization': `Bearer ${token}` }
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la oferta</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si la oferta no existe
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">404</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si el usuario no es el creador ni admin
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">403</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.solicitudes - Solicitudes con datos del solicitante
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getOffer"><span class="type-signature type-signature-static">(static) </span>getOffer<span class="signature">()</span><span class="type-signature"> &rarr; {Object|Object|Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>GET /api/ofertas/:id
+
+Obtiene los datos completos de una oferta especifica, incluyendo
+la informacion del ofertante, la puntuacion media y las valoraciones
+recibidas.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line221">line 221</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3')</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la oferta</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si la oferta no existe
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">404</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.oferta - Datos completos de la oferta con info del ofertante
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.valoraciones - Valoraciones recibidas por el ofertante
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getSimilarOffers"><span class="type-signature type-signature-static">(static) </span>getSimilarOffers<span class="signature">()</span><span class="type-signature"> &rarr; {Object|Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>GET /api/ofertas/:id/similares
+
+Devuelve ofertas similares basadas en la misma categoria,
+excluyendo la oferta actual. Limite de 4 resultados.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line724">line 724</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3/similares')</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la oferta actual</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si ocurre un error interno
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">500</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.ofertas - Hasta 4 ofertas similares
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".listCategories"><span class="type-signature type-signature-static">(static) </span>listCategories<span class="signature">()</span><span class="type-signature"> &rarr; {Object|Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>GET /api/ofertas/categorias
+
+Obtiene la lista completa de categorias disponibles para clasificar
+las ofertas de trabajo.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/categorias')</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.categorias - Lista de categorias ordenadas alfabeticamente
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".myFavorites"><span class="type-signature type-signature-static">(static) </span>myFavorites<span class="signature">()</span><span class="type-signature"> &rarr; {Object|Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>GET /api/ofertas/mis-favoritos
+
+Obtiene las ofertas favoritas del usuario autenticado.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/mis-favoritos', {
+  headers: { 'Authorization': `Bearer ${token}` }
+})</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si no hay token valido
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">401</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si ocurre un error interno
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">500</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.ofertas - Lista de ofertas favoritas con datos completos
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".myOffers"><span class="type-signature type-signature-static">(static) </span>myOffers<span class="signature">()</span><span class="type-signature"> &rarr; {Object|Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>GET /api/ofertas/mis-ofertas
+
+Obtiene las ofertas creadas por el usuario autenticado, incluyendo
+las solicitudes recibidas para cada una con datos de contacto del
+solicitante.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line131">line 131</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/mis-ofertas', {
+  headers: { 'Authorization': `Bearer ${token}` }
+})</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si no hay token
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">401</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.ofertas - Ofertas del usuario autenticado, cada una con su array `solicitudes`
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".removeFavorite"><span class="type-signature type-signature-static">(static) </span>removeFavorite<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>DELETE /api/ofertas/:id/favorito
+
+Elimina una oferta de favoritos del usuario autenticado.
+No da error si la oferta no estaba en favoritos.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line691">line 691</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3/favorito', {
+  method: 'DELETE',
+  headers: { 'Authorization': `Bearer ${token}` }
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la oferta a eliminar</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si no hay token valido
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">401</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si ocurre un error interno
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">500</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    200 - Eliminado de favoritos
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".respondToApplication"><span class="type-signature type-signature-static">(static) </span>respondToApplication<span class="signature">()</span><span class="type-signature"> &rarr; {Object|string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>PUT /api/ofertas/:id/solicitudes/:solicitudId
+
+Acepta o rechaza una solicitud de postulacion.
+
+Solo el creador de la oferta puede gestionar las solicitudes.
+El estado puede ser `'aceptada'` o `'rechazada'`.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line552">line 552</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3/solicitudes/5', {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+  body: JSON.stringify({ estado: 'aceptada' })
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la oferta</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.solicitudId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID de la solicitud</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.estado</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">`'aceptada'` | `'rechazada'`</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si la oferta no existe
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">404</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si el usuario no es el creador
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">403</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si el estado es invalido
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">400</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200 - Solicitud actualizada
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.mensaje - Confirmacion
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".searchOffers"><span class="type-signature type-signature-static">(static) </span>searchOffers<span class="signature">()</span><span class="type-signature"> &rarr; {Object|Array}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>GET /api/ofertas
+
+Obtiene todas las ofertas activas con busqueda y filtros.
+
+Soporta busqueda por texto (titulo y descripcion), filtro por
+categoria y filtro por ubicacion. Los resultados incluyen la
+puntuacion media del usuario ofertante y el numero total de
+valoraciones que ha recibido.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line22">line 22</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas?busqueda=limpieza&amp;ubicacion=Madrid')</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.query.busqueda</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Termino de busqueda en titulo o descripcion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.query.categoria</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">ID de categoria para filtrar</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.query.ubicacion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Ubicacion para filtrar</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.ofertas - Lista de ofertas activas con datos del ofertante y categoria
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".updateOffer"><span class="type-signature type-signature-static">(static) </span>updateOffer<span class="signature">()</span><span class="type-signature"> &rarr; {Object|string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li>PUT /api/ofertas/:id
+
+Actualiza una oferta existente.
+
+Solo el creador de la oferta puede modificarla. Los campos
+proporcionados se actualizan; los omitidos mantienen su valor.</li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_jobs.js.html">routes/jobs.js</a>, <a href="routes_jobs.js.html#line348">line 348</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>fetch('/api/ofertas/3', {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+  body: JSON.stringify({ estado: 'completada' })
+})</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req.params.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">ID de la oferta a actualizar</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.titulo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Nuevo titulo</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.descripcion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Nueva descripcion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.ubicacion</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Nueva ubicacion (null para limpiar)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.precio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Nuevo precio</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.tipo_precio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Nuevo tipo de precio</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.categoria_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Nueva categoria (null para limpiar)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req.body.estado</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Nuevo estado: `'activa'` | `'completada'` | `'cancelada'`</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-throws">Throws:</h5>
+<ul>
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si la oferta no existe
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">404</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    
+        <li>
+
+<dl>
+    <dt>
+        <div class="param-desc usertext">
+        Si el usuario no es el creador
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl class="param-type">
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">403</span>
+
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+</li>
+    </ul>
+
+
+<h5 class="h5-returns">Returns:</h5>
+<ul>
+        <li>
+<div class="param-desc">
+    200 - Oferta actualizada
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    
+        <li>
+<div class="param-desc">
+    200.mensaje - Confirmacion
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+</li>
+    </ul>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Jun 04 2026 13:34:06 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

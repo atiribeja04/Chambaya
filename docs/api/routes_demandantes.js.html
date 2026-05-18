@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>routes/demandantes.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-db.html">db</a><ul class='methods'><li data-type='method'><a href="module-db.html#.inicializarBaseDeDatos">inicializarBaseDeDatos</a></li><li data-type='method'><a href="module-db.html#.obtenerDB">obtenerDB</a></li></ul></li><li><a href="module-middleware_auth.html">middleware/auth</a><ul class='methods'><li data-type='method'><a href="module-middleware_auth.html#.verificarAdmin">verificarAdmin</a></li><li data-type='method'><a href="module-middleware_auth.html#.verificarToken">verificarToken</a></li></ul></li><li><a href="module-routes_admin.html">routes/admin</a><ul class='methods'><li data-type='method'><a href="module-routes_admin.html#.adminUpdateOffer">adminUpdateOffer</a></li><li data-type='method'><a href="module-routes_admin.html#.adminUpdateUser">adminUpdateUser</a></li><li data-type='method'><a href="module-routes_admin.html#.createCategory">createCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.dashboard">dashboard</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteCategory">deleteCategory</a></li><li data-type='method'><a href="module-routes_admin.html#.deleteUser">deleteUser</a></li><li data-type='method'><a href="module-routes_admin.html#.listApplications">listApplications</a></li><li data-type='method'><a href="module-routes_admin.html#.listOffers">listOffers</a></li><li data-type='method'><a href="module-routes_admin.html#.listUsers">listUsers</a></li><li data-type='method'><a href="module-routes_admin.html#.updateOfferStatus">updateOfferStatus</a></li></ul></li><li><a href="module-routes_auth.html">routes/auth</a><ul class='methods'><li data-type='method'><a href="module-routes_auth.html#.changePassword">changePassword</a></li><li data-type='method'><a href="module-routes_auth.html#.getProfile">getProfile</a></li><li data-type='method'><a href="module-routes_auth.html#.login">login</a></li><li data-type='method'><a href="module-routes_auth.html#.register">register</a></li><li data-type='method'><a href="module-routes_auth.html#.updateProfile">updateProfile</a></li></ul></li><li><a href="module-routes_demandantes.html">routes/demandantes</a><ul class='methods'><li data-type='method'><a href="module-routes_demandantes.html#.getDemandante">getDemandante</a></li><li data-type='method'><a href="module-routes_demandantes.html#.listDemandantes">listDemandantes</a></li></ul></li><li><a href="module-routes_destacados.html">routes/destacados</a><ul class='methods'><li data-type='method'><a href="module-routes_destacados.html#.createDestacado">createDestacado</a></li></ul></li><li><a href="module-routes_geocode.html">routes/geocode</a><ul class='methods'><li data-type='method'><a href="module-routes_geocode.html#.geocodeAddress">geocodeAddress</a></li></ul></li><li><a href="module-routes_jobs.html">routes/jobs</a><ul class='methods'><li data-type='method'><a href="module-routes_jobs.html#.addFavorite">addFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.applyToOffer">applyToOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.createOffer">createOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.deleteOffer">deleteOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getApplications">getApplications</a></li><li data-type='method'><a href="module-routes_jobs.html#.getOffer">getOffer</a></li><li data-type='method'><a href="module-routes_jobs.html#.getSimilarOffers">getSimilarOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.listCategories">listCategories</a></li><li data-type='method'><a href="module-routes_jobs.html#.myFavorites">myFavorites</a></li><li data-type='method'><a href="module-routes_jobs.html#.myOffers">myOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.removeFavorite">removeFavorite</a></li><li data-type='method'><a href="module-routes_jobs.html#.respondToApplication">respondToApplication</a></li><li data-type='method'><a href="module-routes_jobs.html#.searchOffers">searchOffers</a></li><li data-type='method'><a href="module-routes_jobs.html#.updateOffer">updateOffer</a></li></ul></li><li><a href="module-routes_notifications.html">routes/notifications</a><ul class='methods'><li data-type='method'><a href="module-routes_notifications.html#.getNotifications">getNotifications</a></li><li data-type='method'><a href="module-routes_notifications.html#.markNotificationsRead">markNotificationsRead</a></li><li data-type='method'><a href="module-routes_notifications.html#~crearNotificacion">crearNotificacion</a></li></ul></li><li><a href="module-routes_ratings.html">routes/ratings</a><ul class='methods'><li data-type='method'><a href="module-routes_ratings.html#.createRating">createRating</a></li><li data-type='method'><a href="module-routes_ratings.html#.getUserRatings">getUserRatings</a></li></ul></li><li><a href="module-routes_solicitudes.html">routes/solicitudes</a><ul class='methods'><li data-type='method'><a href="module-routes_solicitudes.html#.getMyApplications">getMyApplications</a></li></ul></li><li><a href="module-routes_users.html">routes/users</a><ul class='methods'><li data-type='method'><a href="module-routes_users.html#.getPublicProfile">getPublicProfile</a></li></ul></li><li><a href="module-server.html">server</a><ul class='methods'><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.adminRoutes">adminRoutes</a></li><li data-type='method'><a href="module-server.html#.apiRoot">apiRoot</a></li><li data-type='method'><a href="module-server.html#.authRoutes">authRoutes</a></li><li data-type='method'><a href="module-server.html#.cors">cors</a></li><li data-type='method'><a href="module-server.html#.demandantesRoutes">demandantesRoutes</a></li><li data-type='method'><a href="module-server.html#.destacadosRoutes">destacadosRoutes</a></li><li data-type='method'><a href="module-server.html#.docsStatic">docsStatic</a></li><li data-type='method'><a href="module-server.html#.frontendStatic">frontendStatic</a></li><li data-type='method'><a href="module-server.html#.geocodeRoutes">geocodeRoutes</a></li><li data-type='method'><a href="module-server.html#.jobsRoutes">jobsRoutes</a></li><li data-type='method'><a href="module-server.html#.jsonParser">jsonParser</a></li><li data-type='method'><a href="module-server.html#.listen">listen</a></li><li data-type='method'><a href="module-server.html#.notifRoutes">notifRoutes</a></li><li data-type='method'><a href="module-server.html#.ratingsRoutes">ratingsRoutes</a></li><li data-type='method'><a href="module-server.html#.solicitudesRoutes">solicitudesRoutes</a></li><li data-type='method'><a href="module-server.html#.spaFallback">spaFallback</a></li><li data-type='method'><a href="module-server.html#.uploadsStatic">uploadsStatic</a></li><li data-type='method'><a href="module-server.html#.urlencodedParser">urlencodedParser</a></li><li data-type='method'><a href="module-server.html#.usersRoutes">usersRoutes</a></li></ul></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">routes/demandantes.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file Rutas de perfiles de demandantes publicados.
+ * @module routes/demandantes
+ * @requires express
+ * @requires ../db
+ * @requires ../middleware/auth
+ */
+
+const express = require('express');
+const { db } = require('../db');
+const { verificarToken } = require('../middleware/auth');
+
+const router = express.Router();
+
+/**
+ * GET /api/demandantes
+ *
+ * Lista perfiles de demandantes publicados (en_busqueda = 1) con paginacion,
+ * busqueda por texto y ordenacion por destacados y puntuacion.
+ *
+ * @name listDemandantes
+ * @memberof module:routes/demandantes
+ * @function
+ * @param {number} [req.query.page=1]     - Numero de pagina
+ * @param {number} [req.query.limit=12]    - Resultados por pagina (max 50)
+ * @param {string} [req.query.busqueda]    - Texto a buscar en nombre, skills, barrio
+ *
+ * @returns {Object} 200
+ * @returns {Array}  200.demandantes    - Lista de perfiles
+ * @returns {number} 200.total           - Total de resultados
+ * @returns {number} 200.totalPages      - Total de paginas
+ * @returns {number} 200.page            - Pagina actual
+ * @returns {number} 200.limit           - Limite por pagina
+ *
+ * @throws {500} Si ocurre un error interno
+ *
+ * @example
+ * fetch('/api/demandantes?page=1&amp;limit=6&amp;busqueda=jardineria')
+ */
+router.get('/', (req, res) => {
+  try {
+    const { busqueda, page = 1, limit = 12 } = req.query;
+    const pagina = Math.max(1, parseInt(page) || 1);
+    const limite = Math.min(50, Math.max(1, parseInt(limit) || 12));
+
+    let whereSql = "WHERE u.en_busqueda = 1 AND u.tipo = 'demandante'";
+    const params = [];
+
+    if (busqueda) {
+      whereSql += ' AND (u.nombre LIKE ? OR u.skills LIKE ? OR u.descripcion LIKE ? OR u.barrio LIKE ?)';
+      params.push(`%${busqueda}%`, `%${busqueda}%`, `%${busqueda}%`, `%${busqueda}%`);
+    }
+
+    const total = db.prepare(`
+      SELECT COUNT(*) as total FROM usuarios u ${whereSql}
+    `).get(...params).total;
+
+    const totalPages = Math.ceil(total / limite);
+
+    const demandantes = db.prepare(`
+      SELECT u.id, u.nombre, u.foto_perfil, u.skills, u.disponibilidad,
+             u.barrio, u.ubicacion, u.latitud, u.longitud, u.descripcion,
+             u.creado_en,
+             COALESCE(AVG(v.puntuacion), 0) as puntuacion_media,
+             COUNT(v.id) as total_valoraciones,
+             (SELECT fecha_fin FROM destacados WHERE tipo = 'demandante' AND ref_id = u.id AND fecha_fin > datetime('now') LIMIT 1) as destacado_hasta
+      FROM usuarios u
+      LEFT JOIN valoraciones v ON v.usuario_destino_id = u.id
+      ${whereSql}
+      GROUP BY u.id
+      ORDER BY destacado_hasta IS NOT NULL DESC, puntuacion_media DESC, u.creado_en DESC
+      LIMIT ? OFFSET ?
+    `).all(...params, limite, (pagina - 1) * limite);
+
+    res.json({ demandantes, total, totalPages, page: pagina, limit: limite });
+  } catch (error) {
+    console.error('Error al obtener demandantes:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+/**
+ * GET /api/demandantes/:id
+ *
+ * Perfil publico completo de un demandante, incluyendo puntuacion media
+ * y lista de valoraciones recibidas.
+ *
+ * @name getDemandante
+ * @memberof module:routes/demandantes
+ * @function
+ * @param {number} req.params.id - ID del demandante
+ *
+ * @returns {Object} 200
+ * @returns {Object} 200.usuario     - Datos del demandante
+ * @returns {Array}  200.valoraciones - Valoraciones recibidas
+ *
+ * @throws {404} Si el usuario no existe o no es demandante
+ * @throws {500} Si ocurre un error interno
+ *
+ * @example
+ * fetch('/api/demandantes/5')
+ */
+router.get('/:id', (req, res) => {
+  try {
+    const usuario = db.prepare(`
+      SELECT u.id, u.nombre, u.foto_perfil, u.skills, u.disponibilidad,
+             u.barrio, u.ubicacion, u.descripcion, u.creado_en,
+             COALESCE(AVG(v.puntuacion), 0) as puntuacion_media,
+             COUNT(v.id) as total_valoraciones,
+             (SELECT fecha_fin FROM destacados WHERE tipo = 'demandante' AND ref_id = u.id AND fecha_fin > datetime('now') LIMIT 1) as destacado_hasta
+      FROM usuarios u
+      LEFT JOIN valoraciones v ON v.usuario_destino_id = u.id
+      WHERE u.id = ?
+      GROUP BY u.id
+    `).get(req.params.id);
+
+    if (!usuario) return res.status(404).json({ error: 'Usuario no encontrado.' });
+
+    const valoraciones = db.prepare(`
+      SELECT v.*, u.nombre as usuario_nombre, o.titulo as oferta_titulo
+      FROM valoraciones v
+      JOIN usuarios u ON v.usuario_origen_id = u.id
+      LEFT JOIN ofertas o ON v.oferta_id = o.id
+      WHERE v.usuario_destino_id = ?
+      ORDER BY v.creado_en DESC
+    `).all(req.params.id);
+
+    res.json({ usuario, valoraciones });
+  } catch (error) {
+    console.error('Error al obtener demandante:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+module.exports = router;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Jun 04 2026 13:34:06 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
