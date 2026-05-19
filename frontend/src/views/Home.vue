@@ -680,3 +680,5 @@ export default {
 </style>
 
 <!-- TODO: sección de candidatos destacados -->
+
+<!-- TODO: sección de candidatos destacados -->
