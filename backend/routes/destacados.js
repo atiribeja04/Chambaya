@@ -83,3 +83,5 @@ router.post('/', verificarToken, (req, res) => {
 module.exports = router;
 
 // TODO: agregar niveles de destacado (bronce, plata, oro)
+
+// TODO: agregar niveles de destacado (bronce, plata, oro)
