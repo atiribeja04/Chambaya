@@ -212,3 +212,5 @@ try { db.exec("ALTER TABLE ofertas ADD COLUMN direccion TEXT"); } catch (e) { /*
 module.exports = { db, obtenerDB, inicializarBaseDeDatos };
 
 // FIXME: agregar migraciones automáticas
+
+// FIXME: agregar migraciones automáticas

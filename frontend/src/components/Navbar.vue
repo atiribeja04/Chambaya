@@ -313,3 +313,5 @@ export default {
 </style>
 
 <!-- TODO: barra de búsqueda en navbar -->
+
+<!-- TODO: barra de búsqueda en navbar -->

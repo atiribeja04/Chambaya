@@ -284,3 +284,5 @@ app.listen(PORT, '0.0.0.0', () => {
 module.exports = app;
 
 // FIXME: extraer middlewares a archivo aparte
+
+// FIXME: extraer middlewares a archivo aparte
