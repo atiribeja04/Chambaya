@@ -1,0 +1,46 @@
+name: Deploy Chambaya
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SSH key
+        env:
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST: ${{ secrets.HOST }}
+          USER: ${{ secrets.USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        env:
+          HOST: ${{ secrets.HOST }}
+          USER: ${{ secrets.USER }}
+        run: |
+          rsync -avz --delete \
+            --exclude '.git/' \
+            --exclude 'node_modules/' \
+            --exclude 'frontend/dist/' \
+            --exclude '*.db*' \
+            --exclude '.env' \
+            --exclude 'alex.pem' \
+            --exclude 'logs/' \
+            --exclude 'backend/uploads/' \
+            ./ "$USER@$HOST:/home/ubuntu/chambaya/"
+
+      - name: Run deploy script on server
+        env:
+          HOST: ${{ secrets.HOST }}
+          USER: ${{ secrets.USER }}
+        run: |
+          ssh "$USER@$HOST" "bash /home/ubuntu/chambaya/deploy.sh"
